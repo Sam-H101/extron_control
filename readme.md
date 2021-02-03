@@ -7,6 +7,11 @@
     e.start_recording(e.get_units()[0])
 ```
 
+### Config Files
+    1. commands.yml
+        * This is the mapping for the ssh commands to friendly names.
+    2. units.yml
+        * This is the mapping for the control units. 
 ### Command Reference
 * set_routing_ports
     - this sets the channel inputs to record with. 1,2,3,4,5

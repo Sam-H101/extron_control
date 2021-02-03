@@ -4,3 +4,8 @@ units:
       ssh_port: '22'
       ssh_user: 'test'
       ssh_pass: 'test'
+    - name: 'test_host2'
+      hostname: '127.0.0.1'
+      ssh_port: '22'
+      ssh_user: 'test'
+      ssh_pass: 'test'
