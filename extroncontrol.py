@@ -1,5 +1,7 @@
 import yaml
 import paramiko
+
+
 class ExtronControl:
 
     def __init__(self):
@@ -33,12 +35,19 @@ class ExtronControl:
     def __read_response(self, value):
         for line in iter(value.readline, ""):
             print(line, end="")
+
     def __get_routing_port_command(self, level, name):
         return self.commands[level][name]
 
     def set_routing_ports(self, top, bottom, unit):
+        """
+
+        :param top: This is the string representation of the port number
+        :param bottom: This is the string representation of the port number
+        :param unit: This is the unit we want to run against.
+        """
         ssh = self.__init_connection(unit['hostname'], unit['ssh_user'], unit['ssh_pass'], unit['ssh_port'])
-        top = self.__get_routing_port_command("top",top)
+        top = self.__get_routing_port_command("top", top)
         ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command(top)
         self.__read_response(ssh_stdout)
         bottom = self.__get_routing_port_command("bottom", bottom)
@@ -47,17 +56,23 @@ class ExtronControl:
         ssh.close()
 
     def start_recording(self, unit):
+        """
+        Starts recording on the specified extron SMP Unit
+        :param unit:
+        """
         ssh = self.__init_connection(unit['hostname'], unit['ssh_user'], unit['ssh_pass'], unit['ssh_port'])
         ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command(self.commands['start_recording'])
         self.__read_response(ssh_stdout)
         ssh.close()
 
-    def stop_recording(self,unit):
+    def stop_recording(self, unit):
+        """
+        Stops recording on the specified extron SMP Unit
+        :param unit:
+        """
         ssh = self.__init_connection(unit['hostname'], unit['ssh_user'], unit['ssh_pass'], unit['ssh_port'])
         ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command(self.commands['stop_recording'])
         self.__read_response(ssh_stdout)
         ssh.close()
 
-e = ExtronControl()
-e.set_routing_ports('one', 'three', e.get_units()[0])
-e.start_recording(e.get_units()[0])
+
