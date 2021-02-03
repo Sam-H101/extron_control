@@ -1,0 +1,10 @@
+commands:
+  top:
+    one: '1*1!'
+    two: '1*2!'
+  bottom:
+    three: '3*2!'
+    four: '4*2!'
+    five: '5*2!'
+  start_recording: 'wY1RCDR|'
+  stop_recording: 'wY0RCDR|'

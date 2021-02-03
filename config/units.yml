@@ -1,0 +1,6 @@
+units:
+    - name: 'test_host'
+      hostname: '127.0.0.1'
+      ssh_port: '22'
+      ssh_user: 'test'
+      ssh_pass: 'test'
