@@ -33,9 +33,12 @@ class ExtronControl:
         return ssh
 
     def __read_response(self, value):
+        lines = []
         for line in iter(value.readline, ""):
             print(line, end="")
-
+            lines.append(line)
+        return lines
+    
     def __get_routing_port_command(self, level, name):
         return self.commands[level][name]
 
